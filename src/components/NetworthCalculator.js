@@ -3,7 +3,8 @@ import React from 'react'
 const NetworthCalculator = () => {
   return (
    
-    <div>NetworthCalculator
+    <div>
+        <h2>Networth Calculator</h2>
     <form>
         <label for="cars">Asset Description</label>
         <select id="assets" name="assets">
