@@ -1,12 +1,14 @@
 
 import './App.css';
 import Header from './components/Header/Header';
-import NetworthCalculator from './components/NetworthCalculator'
+import NavBar from './components/NavBar/NavBar';
+import NetworthCalculator from './components/NetworthCalculator/NetworthCalculator'
 
 function App() {
   return (
     <div className="App">
       <Header/>
+      <NavBar/>
       <NetworthCalculator/>
     </div>
   );

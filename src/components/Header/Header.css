@@ -17,6 +17,8 @@
   
   h1 {
     margin: 0;
+    position: sticky;
+  
   }
   
   /* @font-palette-values --Grays {
