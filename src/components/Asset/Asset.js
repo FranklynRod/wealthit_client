@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Asset = () => {
-  //Asset State
-    const [assets, setAssets] = useState([]);
-    const [assetTotal, setAssetTotal ] = useState(0)
+const Asset = ({onAddAsset}) => {
     
     //Add user input into object
     const handleAddAsset = () => {
@@ -15,9 +12,7 @@ const Asset = () => {
             amount: assetAmount,
         }
 
-    //Update the current states
-     setAssets(...assets, newAsset)
-     setAssetTotal( assetTotal + assetAmount)
+       onAddAsset(newAsset)
 
      //Clear Inputs
      document.getElementById('assets').value = 'select';

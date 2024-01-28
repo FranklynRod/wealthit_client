@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Liability = () => {
         //Liability State
-          const [liabilities, setLiabilities] = useState([]);
+      
           const [liabilityTotal, setLiabilityTotal ] = useState(0)
           
           //Add user input into object
