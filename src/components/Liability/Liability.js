@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Liability = () => {
+const Liability = ({liabilities}) => {
         //Liability State
       
           const [liabilityTotal, setLiabilityTotal ] = useState(0)
@@ -16,8 +16,8 @@ const Liability = () => {
               }
       
           //Update the current states
-           setLiabilities(...liabilities, newLiability)
-           setLiabilityTotal( liabilityTotal + liabilityAmount)
+        //    setLiabilities(...liabilities, newLiability)
+        //    setLiabilityTotal( liabilityTotal + liabilityAmount)
       
            //Clear Inputs
            document.getElementById('liabilities').value = 'select';

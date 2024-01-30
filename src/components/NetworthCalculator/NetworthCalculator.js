@@ -11,8 +11,8 @@ const NetworthCalculator = () => {
     const handleAddAsset = (newAsset) => {
       setAssets(...assets, newAsset)
     }
-    const handleAddLiabilities = (newLiabilites) => {
-      setLiabilities(...liabilities, newLiabilites)
+    const handleAddLiabilities = (newLiabilities) => {
+      setLiabilities(...liabilities, newLiabilities)
     }
     const handleCalculate = () => {
       const assetTotal = assets.reduce((total,asset)=> total + asset.amount, 0)
@@ -26,8 +26,8 @@ const NetworthCalculator = () => {
     <div>
       <h2>Networth Calculator</h2>
       <form>
-        <Asset onAddAsset={handleAddAsset}/>
-        <Liability onAddLiability={handleAddLiabilities}/>
+        <Asset onAddAsset={handleAddAsset} assets={assets}/>
+        <Liability onAddLiability={handleAddLiabilities} liabilities={liabilities}/>
         <p>Networth Total:${networthTotal.toFixed(2)} </p>
         <button onClick={handleCalculate}>Calculate</button>
       </form>

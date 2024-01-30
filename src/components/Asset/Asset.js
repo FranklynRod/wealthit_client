@@ -1,17 +1,17 @@
 import React from 'react'
 
-const Asset = ({onAddAsset}) => {
+const Asset = ({onAddAsset, assets}) => {
     
     //Add user input into object
     const handleAddAsset = () => {
         const assetCategory = document.getElementById('assets').value;
-        const assetAmount = parseFloat(document.getElementById('asset-amount').value) || 0;
+        const assetAmount = document.getElementById('asset-amount').value || 0;
 
         const newAsset = {
             category: assetCategory,
             amount: assetAmount,
         }
-
+        console.log('handleAsset', newAsset)
        onAddAsset(newAsset)
 
      //Clear Inputs
@@ -19,6 +19,10 @@ const Asset = ({onAddAsset}) => {
      document.getElementById('asset-amount').value = '';
 
     }
+
+  const getAssetTotal = () => {
+    
+    return assets.reduce((total,asset)=> total + asset.amount, 0).toFixed(2)}
    
 
   return (
@@ -37,9 +41,9 @@ const Asset = ({onAddAsset}) => {
         Asset Amount
         <input type="number" id='asset-amount'></input>
         <button onClick={handleAddAsset}>Add</button>
-        <p>Asset Total:${assetTotal.toFixed(2)} </p>
+        <p>Asset Total:${getAssetTotal} </p>
         <ul>
-            {assets.map((asset, index) => (<li key={index}>{asset.type}: ${asset.amount.toFixed(2)} </li>))}
+            {assets?.map((asset, index) => (<li key={index}>{asset.type}: ${asset.amount.toFixed(2)} </li>))}
         </ul>
         </>
         
