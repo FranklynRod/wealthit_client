@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Liability = ({liabilities}) => {
-        //Liability State
-      
-          const [liabilityTotal, setLiabilityTotal ] = useState(0)
-          
+const Liability = ({ onAddLiability,liabilities}) => {  
           //Add user input into object
           const handleAddLiability = () => {
+            const liabilityValue = document.getElementById('liabilities').value
+            if ( liabilityValue !== '')
+            {
               const liabilityCategory = document.getElementById('liabilities').value;
               const liabilityAmount = parseFloat(document.getElementById('liability-amount').value) || 0;
       
@@ -14,20 +13,30 @@ const Liability = ({liabilities}) => {
                   category: liabilityCategory,
                   amount: liabilityAmount,
               }
-      
-          //Update the current states
-        //    setLiabilities(...liabilities, newLiability)
-        //    setLiabilityTotal( liabilityTotal + liabilityAmount)
-      
+              onAddLiability(newLiability);
+
            //Clear Inputs
            document.getElementById('liabilities').value = 'select';
            document.getElementById('liability-amount').value = '';
-      
-          }
+          }}
+          const getLiabilityTotal = () => {
+            if (Array.isArray(liabilities)) {
+              return liabilities.reduce((total, liability) => total + parseFloat(liability.amount), 0).toFixed(2);
+            } else {
+              return 0;
+            }
+          };
   return (
     <>
-    <label for="liabilities" >Liability Description</label>
-        <select id="liabilities" name="liabilities">
+    <tr>
+      <th><label for="liabilities" >Liability Category</label></th>
+      <th> Liability Amount</th>
+      <th>Current Assets</th>
+      <th>Liability Total:${getLiabilityTotal()}</th>
+    </tr>
+    <tr>
+      <td>
+      <select id="liabilities" name="liabilities">
         <option value="select">Select</option>
           <option value="loan">Loan</option>
           <option value="credit-card">Credit Card</option>
@@ -38,13 +47,18 @@ const Liability = ({liabilities}) => {
         {document.getElementById('liabilities')?.value === 'other' && (
         <input type="text" name="other" id="other" placeholder="Other description" />
       )}
-        Liability Amount
+      </td>
+      <td>   
         <input id='liability-amount'></input>
-        <button onClick={handleAddLiability}>Add</button>
-        <p>Liability Total:${liabilityTotal.toFixed(2)} </p>
+        <button onClick={handleAddLiability}>Add</button></td>
         <ul>
-            {liabilities.map((liability, index) => (<li key={index}>{liability.type}: ${liability.amount.toFixed(2)} </li>))}
+        {Array.isArray(liabilities) && liabilities.map((liability, index) => (
+              <li key={index}>
+                {liability.category}: ${liability.amount.toFixed(2)}{" "}
+              </li>
+            ))}
         </ul>
+    </tr>
         </>
   )
 }

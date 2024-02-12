@@ -9,12 +9,15 @@ const NetworthCalculator = () => {
     const [ networthTotal, setNetworthTotal ] = useState(0)
 
     const handleAddAsset = (newAsset) => {
+
       setAssets(...assets, newAsset)
     }
     const handleAddLiabilities = (newLiabilities) => {
+
       setLiabilities(...liabilities, newLiabilities)
     }
-    const handleCalculate = () => {
+    const handleCalculate = (event) => {
+      event.preventDefault()
       const assetTotal = assets.reduce((total,asset)=> total + asset.amount, 0)
       const liabilityTotal = liabilities.reduce((total,liability)=> total + liability.amount, 0)
       const netWorthCalculate = assetTotal +liabilityTotal
@@ -26,9 +29,24 @@ const NetworthCalculator = () => {
     <div>
       <h2>Networth Calculator</h2>
       <form>
-        <Asset onAddAsset={handleAddAsset} assets={assets}/>
-        <Liability onAddLiability={handleAddLiabilities} liabilities={liabilities}/>
-        <p>Networth Total:${networthTotal.toFixed(2)} </p>
+        <table>
+          <Asset onAddAsset={handleAddAsset} assets={assets}/>
+          <Liability onAddLiability={handleAddLiabilities} liabilities={liabilities}/>
+          <tr>
+          <th><label for="Networth">Networth Date</label></th>
+            <th colSpan="2" className="networth-total">Networth Total:${networthTotal.toFixed(2)} </th>
+          </tr>
+          <tr>
+        <td>
+          <input type="date"></input>
+        </td>
+        <td>
+        <p> dynamic networth</p>
+        </td>
+       
+        </tr>
+        </table>
+      
         <button onClick={handleCalculate}>Calculate</button>
       </form>
     </div>
