@@ -1,8 +1,11 @@
-import React from "react";
+
+import React, {useState} from "react";
 
 const Asset = ({ onAddAsset, assets }) => {
+  const [assetTotal, setAssetTotal] = useState(0)
   //Add user input into object
-  const handleAddAsset = () => {
+  const handleAddAsset = (event) => {
+    event.preventDefault();
     const assetValue = document.getElementById('liabilities').value
     if ( assetValue !== ''){
     const assetCategory = document.getElementById("assets").value;
@@ -10,23 +13,17 @@ const Asset = ({ onAddAsset, assets }) => {
 
     const newAsset = {
       category: assetCategory,
-      amount: assetAmount,
+      amount: Number(assetAmount),
     };
-    console.log("handleAsset", newAsset);
-    onAddAsset(newAsset);
+    console.log({newAsset});
+    // onAddAsset(newAsset);
+    setAssetTotal(assetTotal + newAsset.amount)
 
     //Clear Inputs
     document.getElementById("assets").value = "select";
     document.getElementById("asset-amount").value = "";
   }};
 
-  const getAssetTotal = () => {
-    if (Array.isArray(assets)) {
-      return assets.reduce((total, asset) => total + parseFloat(asset.amount), 0).toFixed(2);
-    } else {
-      return 0;
-    }
-  };
 
   return (
     <>
@@ -37,7 +34,7 @@ const Asset = ({ onAddAsset, assets }) => {
         <th>Asset Amount</th>
         <th>Current Assets</th>
         <th>
-          Asset Total:${getAssetTotal()} 
+          Asset Total:${assetTotal} 
         </th>
       </tr>
       <tr>
@@ -49,7 +46,6 @@ const Asset = ({ onAddAsset, assets }) => {
             <option value="investment">Investment</option>
             <option value="equity">Home Equity</option>
             <option value="other">Other</option>
-            <input type="text" name="other" id="asset-amount"></input>
             {document.getElementById("assets")?.value === "other" && (
               <input
                 type="text"
@@ -62,7 +58,7 @@ const Asset = ({ onAddAsset, assets }) => {
         </td>
         <td>
           <input type="number" id="asset-amount"></input>
-          <button onClick={handleAddAsset}>Add</button>
+          <button onClick={(event) => handleAddAsset(event)}>Add</button>
         </td>
         <td>
           {/* static method to check if assets  is an array then display*/}
