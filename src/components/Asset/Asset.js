@@ -1,29 +1,28 @@
-
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const Asset = ({ onAddAsset, assets }) => {
-  const [assetTotal, setAssetTotal] = useState(0)
+  const [assetTotal, setAssetTotal] = useState(0);
   //Add user input into object
   const handleAddAsset = (event) => {
     event.preventDefault();
-    const assetValue = document.getElementById('liabilities').value
-    if ( assetValue !== ''){
-    const assetCategory = document.getElementById("assets").value;
-    const assetAmount = document.getElementById("asset-amount").value || 0;
+    const assetValue = document.getElementById("liabilities").value;
+    if (assetValue !== "") {
+      const assetCategory = document.getElementById("assets").value;
+      const assetAmount = document.getElementById("asset-amount").value || 0;
 
-    const newAsset = {
-      category: assetCategory,
-      amount: Number(assetAmount),
-    };
-    console.log({newAsset});
-    // onAddAsset(newAsset);
-    setAssetTotal(assetTotal + newAsset.amount)
+      const newAsset = {
+        category: assetCategory,
+        amount: Number(assetAmount),
+      };
+      console.log({ newAsset });
+      // onAddAsset(newAsset);
+      setAssetTotal(assetTotal + newAsset.amount);
 
-    //Clear Inputs
-    document.getElementById("assets").value = "select";
-    document.getElementById("asset-amount").value = "";
-  }};
-
+      //Clear Inputs
+      document.getElementById("assets").value = "select";
+      document.getElementById("asset-amount").value = "";
+    }
+  };
 
   return (
     <>
@@ -33,9 +32,7 @@ const Asset = ({ onAddAsset, assets }) => {
         </th>
         <th>Asset Amount</th>
         <th>Current Assets</th>
-        <th>
-          Asset Total:${assetTotal} 
-        </th>
+        <th>Asset Total:${assetTotal}</th>
       </tr>
       <tr>
         <td>
@@ -63,16 +60,15 @@ const Asset = ({ onAddAsset, assets }) => {
         <td>
           {/* static method to check if assets  is an array then display*/}
           <ul>
-            {Array.isArray(assets) && assets.map((asset, index) => (
-              <li key={index}>
-                {asset.category}: ${asset.amount.toFixed(2)}{" "}
-              </li>
-            ))}
+            {Array.isArray(assets) &&
+              assets.map((asset, index) => (
+                <li key={index}>
+                  {asset.category}: ${asset.amount.toFixed(2)}{" "}
+                </li>
+              ))}
           </ul>
         </td>
-        <td>
-
-      </td>
+        <td></td>
       </tr>
     </>
   );
