@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom';
 
 const SignUp = () => {
   return (
-    <><h1>
+    <>
+    <h1>
         Register
     </h1>
     <form>
