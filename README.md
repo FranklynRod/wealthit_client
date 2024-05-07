@@ -17,6 +17,7 @@ Wealthit uses React frontend and Nodejs and SQL on the backend while using .....
 * Users can add and modify assets 
 *  Users can add and modify liabilites
 * Users can calculate and save networth
+* Use of Context to pass users account data
 * Accessible navigation using keyboard
 
 ## API
